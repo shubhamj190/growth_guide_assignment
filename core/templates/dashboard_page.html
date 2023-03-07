@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="container mt-4 col-md-6 col-sm-12">
+    <table class="table table-bordered border-dark">
+        <thead>
+            <tr>
+                <th>File name</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for file in files %}
+            <tr>
+            <th>{{file}}</th>
+            <td><a type="button" class="btn btn-secondary" target='_blank' href="/file-open/{{file}}">Open</button></td>
+            <td><a type="button" class="btn btn-danger" target='_blank' href="/download/{{file}}">Download</button></td>
+            </tr>
+        
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock body %}

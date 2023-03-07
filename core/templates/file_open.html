@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="container-fluid mt-4">
+    <table class="table table-bordered border-dark">
+        <thead>
+            <tr>
+                <th>serial no.</th>
+                {% for col in cols %}
+                <th>{{col}}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+        {% for i in d %}
+            <tr>
+                {% for k,v in i.items  %}
+                    <td>{{v}}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock body %}

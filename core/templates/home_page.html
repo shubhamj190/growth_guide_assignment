@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container mt-4">
+            <div>
+                <label for="formFileLg" class="form-label">Upload csv or xlsx file only</label>
+                <input name="myfile" class="form-control form-control-lg" id="formFileLg" type="file" onchange="myFunction()">
+            </div>
+            <button disabled class="btn btn-primary mt-4" type="submit" id="submit-btn">Upload</button>
+            <button class="btn btn-primary mt-4 ml-2" onclick="reset_func()" type="reset" id="reset-btn">Reset</button>
+        </div>
+    </form>
+    {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{% if message.tags == "error" %}danger{% else %}success{% endif %}  alert-dismissible fade show mt-4 col-md-6 col-sm-12" role="alert">
+                {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+    {% endif %}
+</div>
+
+{% endblock body %}
+
+{% block extra_js %}
+<script>
+function myFunction() {
+  var file_input = document.getElementById("formFileLg")
+  console.log(file_input.value)
+  if (file_input.value != ""){
+    document.getElementById('submit-btn').removeAttribute('disabled','')
+  }
+}
+function reset_func() {
+    document.getElementById("submit-btn").disabled=true;
+  }
+</script>
+{% endblock extra_js %}
