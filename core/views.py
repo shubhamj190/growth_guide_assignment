@@ -41,7 +41,7 @@ def login_page(request):
             request.session['token']=token
             return HttpResponseRedirect('/dashboard')
         else:
-            messages.error(request, "Please enter correct username and passwpord" )
+            messages.error(request, "Please enter correct username and password" )
             return render(request, 'login_page.html')
 
     return render(request, 'login_page.html')
