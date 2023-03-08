@@ -19,7 +19,7 @@ def home_page(request):
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']
         file_format= myfile.__dict__['_name'].split('.')[-1]
-        if file_format not in  ['csv', 'xlsx']:
+        if file_format not in  ['csv', 'xlsx', 'xls']:
             messages.error(request, "please upload csv or xlsx files only !!" )
             return render(request, 'home_page.html')
         fs = FileSystemStorage()
@@ -66,6 +66,8 @@ def file_open(request, file_name):
         df=pd.read_csv(media_path + '/'+ file_name)
         print(df)
     elif file_format =='xlsx':
+        df=pd.read_excel(media_path + '/' + file_name)
+    elif file_format =='xls':
         df=pd.read_excel(media_path + '/' + file_name)
     else:
         return HttpResponse("file format is incorrect")
